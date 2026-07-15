@@ -1,0 +1,9 @@
+node_modules/
+dist/
+dist-electron/
+out/
+.vite/
+*.log
+data/captures/*.png
+data/examples/**/*
+data/app.log

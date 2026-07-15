@@ -1,0 +1,26 @@
+yaiml: "0.2"
+
+project:
+  id: maicroflow
+  name: mAIcroFlow
+
+documents:
+  sot:
+    path: SOT.md
+    title: SOT
+  architecture:
+    path: ARCHITECTURE.md
+    title: Architecture
+  maintainer:
+    path: MAINTAINER_GUIDE.md
+    title: Maintainer Guide
+
+preserved_context:
+  prior_state_snapshot: SOTM.md
+  ai_contract: AI_WORKFLOW_CONTRACT.md
+  safety: SAFETY.md
+  manual_checks: MANUAL_TEST_CHECKLIST.md
+
+reference:
+  yaiml:
+    note: Provide a local or team-approved YAIML reference at run time for manual convention refreshes; do not commit machine-specific paths.

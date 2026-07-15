@@ -1,0 +1,79 @@
+[
+  {
+    "id": "workflow-1778620293605",
+    "name": "New Macro",
+    "status": "paused",
+    "runnerState": "inactive",
+    "autoAppend": true,
+    "lastRunStatus": "not ready",
+    "lastSuccessfulAppend": "2026-05-12T21:21:19.121Z",
+    "summaryInstructions": "",
+    "trigger": {
+      "kind": "screen-detection",
+      "summary": "Watch for matching screen every 5s",
+      "hotkey": "F12",
+      "detectionIntervalSeconds": 5,
+      "detectionCooldownSeconds": 10,
+      "duplicateDetectionEnabled": true,
+      "experimental": true
+    },
+    "nodes": [
+      {
+        "id": "watch-screen-1778620293606",
+        "type": "trigger",
+        "title": "When this screen appears",
+        "summary": "Add a reference screenshot here. This macro starts when the visible screen matches it, or when you press F12 while testing.",
+        "config": {
+          "kind": "screen-detection",
+          "detectionIntervalSeconds": 5,
+          "detectionCooldownSeconds": 10,
+          "duplicateDetectionEnabled": true,
+          "exampleRefs": [],
+          "hotkey": "F12"
+        },
+        "category": "trigger"
+      },
+      {
+        "id": "screen-grab-1778620293607",
+        "type": "capture",
+        "title": "Capture the visible screen",
+        "summary": "Internal capture used by this macro. The app window is excluded where supported.",
+        "config": {
+          "mode": "full-screen",
+          "source": "cursor-display"
+        },
+        "category": "observe"
+      },
+      {
+        "id": "ai-extract-1778620293608",
+        "type": "extract",
+        "title": "Read values",
+        "summary": "Use local AI to read the requested values from the visible screen.",
+        "config": {
+          "kind": "ollama-vision",
+          "fields": [
+            "value"
+          ],
+          "prompt": "Take a screenshot and return the requested visible values as strict JSON.",
+          "exampleRefs": []
+        },
+        "category": "think"
+      },
+      {
+        "id": "append-csv-1778620293609",
+        "type": "action",
+        "title": "Add row to file",
+        "summary": "Append the extracted values to a local spreadsheet file.",
+        "config": {
+          "kind": "append-csv",
+          "outputDirectory": "",
+          "fileName": "macro_output.csv"
+        },
+        "category": "act"
+      }
+    ],
+    "lastRun": "2026-05-12T21:21:08.106Z",
+    "lastResult": "Add a trigger screenshot to the When step.",
+    "schemaVersion": 1
+  }
+]
