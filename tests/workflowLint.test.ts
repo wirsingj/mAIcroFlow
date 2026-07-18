@@ -28,6 +28,16 @@ describe('workflow lint diagnostics', () => {
     expect(diagnostics).toContainEqual(expect.objectContaining({ severity: 'error', code: 'invalid_hotkey' }));
   });
 
+  it('errors on duplicate hotkey modifiers', () => {
+    const diagnostics = lintWorkflow(
+      workflowWithPatch({
+        trigger: { kind: 'hotkey', summary: 'bad', hotkey: 'Ctrl+Control+F7' }
+      })
+    );
+
+    expect(diagnostics).toContainEqual(expect.objectContaining({ severity: 'error', code: 'invalid_hotkey' }));
+  });
+
   it('warns on impossible logic and sensitive targets', () => {
     const diagnostics = lintWorkflow(
       workflowWithPatch({

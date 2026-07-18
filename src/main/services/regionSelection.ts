@@ -25,7 +25,7 @@ export function displaySourceForRegion(displays: DisplayLike[], region: CaptureR
     x: region.x + region.width / 2,
     y: region.y + region.height / 2
   };
-  const display = displays.find((item) => pointInRegion(center, item.bounds)) ?? displays[0];
+  const display = displays.find((item) => pointInRegion(center, item.bounds)) ?? displayWithLargestIntersection(displays, region) ?? displays[0];
   if (!display) {
     throw new Error('No display is available for region selection.');
   }
@@ -63,5 +63,20 @@ export function captureDisplaySourceFromPickedRegion(displays: CaptureDisplaySou
 }
 
 function pointInRegion(point: { x: number; y: number }, region: CaptureRegion): boolean {
-  return point.x >= region.x && point.x <= region.x + region.width && point.y >= region.y && point.y <= region.y + region.height;
+  return point.x >= region.x && point.x < region.x + region.width && point.y >= region.y && point.y < region.y + region.height;
+}
+
+function displayWithLargestIntersection(displays: DisplayLike[], region: CaptureRegion): DisplayLike | undefined {
+  return displays
+    .map((display) => ({ display, area: intersectionArea(display.bounds, region) }))
+    .filter((item) => item.area > 0)
+    .sort((left, right) => right.area - left.area)[0]?.display;
+}
+
+function intersectionArea(left: CaptureRegion, right: CaptureRegion): number {
+  const x1 = Math.max(left.x, right.x);
+  const y1 = Math.max(left.y, right.y);
+  const x2 = Math.min(left.x + left.width, right.x + right.width);
+  const y2 = Math.min(left.y + left.height, right.y + right.height);
+  return Math.max(0, x2 - x1) * Math.max(0, y2 - y1);
 }

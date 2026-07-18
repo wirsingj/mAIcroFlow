@@ -9,6 +9,12 @@ describe('workflow hotkey helpers', () => {
     expect(normalizeHotkey('esc')).toBe('Esc');
   });
 
+  it('rejects malformed hotkeys before dynamic registration', () => {
+    expect(normalizeHotkey('Ctrl+Control+F7')).toBeNull();
+    expect(normalizeHotkey('Ctrl+NotAKey')).toBeNull();
+    expect(normalizeHotkey('F7+Ctrl')).toBeNull();
+  });
+
   it('collects unique active workflow hotkeys', () => {
     expect(
       workflowHotkeys([
@@ -17,6 +23,15 @@ describe('workflow hotkey helpers', () => {
         workflowWithHotkey('paused', 'F9', 'paused')
       ])
     ).toEqual(['F12']);
+  });
+
+  it('skips malformed active workflow hotkeys', () => {
+    expect(
+      workflowHotkeys([
+        workflowWithHotkey('valid', 'F8', 'active'),
+        workflowWithHotkey('invalid', 'Ctrl+Control+F7', 'active')
+      ])
+    ).toEqual(['F8']);
   });
 
   it('does not expose the global safety pause chord as a workflow hotkey', () => {

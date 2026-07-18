@@ -41,10 +41,11 @@ Declared boundary: visible pixels in, explicit workflow actions out. The app mus
 - Permission UI supports approve once, approve for this renderer session, approve always, deny, and Settings reset for persistent capability approvals.
 - The builder uses a simplified blueprint-style bubble canvas by default, with detailed node configuration behind a Details toggle.
 - Runs emit live progress stages to the renderer so users can see capture, extraction, validation/review, action, done, failed, or ignored state without reading logs first.
-- Dynamic workflow hotkeys for active workflows plus global safety pause `Ctrl+Alt+Shift+P`.
+- Dynamic workflow hotkeys for active workflows plus global safety pause `Ctrl+Alt+Shift+P`; malformed chords and duplicate modifier aliases are blocked by lint/skipped before registration.
 - Watch mode for `screen-detection`, `reference-image`, and `region-visible` trigger kinds.
 - Capture sources include display under cursor, primary display, specific monitor, and rectangle crop.
 - Drag-to-select rectangle picker is available from builder/reference capture/floating control; floating control can choose a workflow and save a rectangle into that workflow.
+- Region selection chooses monitor ownership by region center and falls back to largest display overlap for monitor-edge/gap selections.
 - Watch debug logs and Run Inspector show watch decisions, detection confidence/reason, capture region, reference-load metadata, and deterministic reference scores.
 - Reference-image triggers use a conservative deterministic PNG similarity precheck before Ollama semantic fallback.
 - `StructuredObservation` is the primary run/debug payload; legacy fishing-shaped fields remain for compatibility/demo adapter paths.
@@ -53,13 +54,13 @@ Declared boundary: visible pixels in, explicit workflow actions out. The app mus
 
 ## Validation State
 
-Reported by the July 4, 2026 live-proposal diff pass:
+Reported by the July 15, 2026 YAIML todo continuation pass:
 
 - `npm run validate` passed.
-- Vitest passed with 16 files and 101 tests.
+- Vitest passed with 16 files and 106 tests.
 - Go tests passed.
 - TypeScript/Electron production build passed.
-- `npm audit --audit-level=moderate` did not pass. Remaining findings require deliberate breaking-upgrade work around Electron/Vite/Vitest/electron-vite and ExcelJS/uuid.
+- `npm audit --audit-level=moderate` was not rerun in this pass. Existing findings remain a deliberate dependency-upgrade task around Electron/Vite/Vitest/electron-vite and ExcelJS/uuid.
 
 ## Declared Human Direction
 

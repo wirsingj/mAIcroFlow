@@ -65,11 +65,27 @@ export function normalizeHotkey(value: unknown): string | null {
     .split('+')
     .map((part) => part.trim())
     .filter(Boolean);
-  if (!parts.length) {
+  if (!parts.length || parts.length > 5) {
     return null;
   }
 
-  return parts.map((part, index) => normalizeHotkeyPart(part, index === parts.length - 1)).join('+');
+  const key = normalizeKeyPart(parts.at(-1) ?? '');
+  if (!key) {
+    return null;
+  }
+
+  const modifiers: string[] = [];
+  const seenModifiers = new Set<string>();
+  for (const part of parts.slice(0, -1)) {
+    const modifier = normalizeModifierPart(part);
+    if (!modifier || seenModifiers.has(modifier)) {
+      return null;
+    }
+    seenModifiers.add(modifier);
+    modifiers.push(modifier);
+  }
+
+  return [...modifiers, key].join('+');
 }
 
 function workflowConfiguredHotkeys(workflow: Workflow): string[] {
@@ -82,16 +98,17 @@ function workflowConfiguredHotkeys(workflow: Workflow): string[] {
   return values.filter((value): value is string => Boolean(value?.trim()));
 }
 
-function normalizeHotkeyPart(value: string, isKey: boolean): string {
+function normalizeModifierPart(value: string): string | null {
+  return modifierLabels[value.trim().toUpperCase()] ?? null;
+}
+
+function normalizeKeyPart(value: string): string | null {
   const upper = value.trim().toUpperCase();
-  if (!isKey) {
-    return modifierLabels[upper] ?? value.trim();
-  }
   if (/^F(?:[1-9]|1\d|2[0-4])$/.test(upper)) {
     return upper;
   }
   if (/^[A-Z0-9]$/.test(upper)) {
     return upper;
   }
-  return keyLabels[upper] ?? value.trim();
+  return keyLabels[upper] ?? null;
 }

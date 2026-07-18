@@ -24,6 +24,20 @@ describe('region selection helpers', () => {
     });
   });
 
+  it('treats shared monitor edges as belonging to the next display', () => {
+    expect(displaySourceForRegion(displays, { x: -20, y: 20, width: 40, height: 100 }).displayId).toBe('2');
+  });
+
+  it('falls back to the display with the largest region overlap when the center is outside all displays', () => {
+    const gappedDisplays = [
+      { id: 1, bounds: { x: 0, y: 0, width: 100, height: 100 } },
+      { id: 2, bounds: { x: 200, y: 0, width: 100, height: 100 } }
+    ];
+
+    expect(displaySourceForRegion(gappedDisplays, { x: 80, y: 10, width: 80, height: 50 }).displayId).toBe('1');
+    expect(displaySourceForRegion(gappedDisplays, { x: 120, y: 10, width: 100, height: 50 }).displayId).toBe('2');
+  });
+
   it('computes a union for multi-monitor overlays', () => {
     expect(displayUnionBounds(displays)).toEqual({ x: -1280, y: 0, width: 3200, height: 1080 });
   });

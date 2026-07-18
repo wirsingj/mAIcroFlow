@@ -437,11 +437,29 @@ function isValidHotkey(value: string): boolean {
     return false;
   }
 
-  if (modifiers.some((modifier) => !validModifiers.has(modifier))) {
-    return false;
+  const seenModifiers = new Set<string>();
+  for (const modifier of modifiers) {
+    const canonical = canonicalModifier(modifier);
+    if (!canonical || seenModifiers.has(canonical)) {
+      return false;
+    }
+    seenModifiers.add(canonical);
   }
 
   return validSingleKeys.has(key) || /^F(?:[1-9]|1\d|2[0-4])$/.test(key);
+}
+
+function canonicalModifier(value: string): string | null {
+  if (!validModifiers.has(value)) {
+    return null;
+  }
+  if (value === 'CTRL' || value === 'CONTROL' || value === 'COMMANDORCONTROL' || value === 'CMDORCTRL') {
+    return 'COMMANDORCONTROL';
+  }
+  if (value === 'SUPER' || value === 'META') {
+    return 'SUPER';
+  }
+  return value;
 }
 
 function evaluateComparison(left: number, operator: string, right: number): boolean {
