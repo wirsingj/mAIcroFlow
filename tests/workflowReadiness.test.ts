@@ -83,6 +83,28 @@ describe('workflow run readiness', () => {
     ).toEqual([]);
   });
 
+  it('does not treat malformed region-visible rectangles as runnable', () => {
+    const workflow: Workflow = {
+      ...createScreenToCsvWorkflow(new Date('2026-05-11T12:00:00Z')),
+      trigger: {
+        kind: 'region-visible',
+        summary: 'Watch for visible region'
+      },
+      nodes: [
+        watchScreenWithRef(),
+        {
+          ...createMacroNodeFromTemplate('screen-grab', new Date('2026-05-11T12:00:02Z')),
+          config: { mode: 'region', source: 'primary-display', region: { x: 0, y: 0, width: 0, height: 100 } }
+        },
+        createMacroNodeFromTemplate('ai-extract', new Date('2026-05-11T12:00:03Z')),
+        createMacroNodeFromTemplate('append-csv', new Date('2026-05-11T12:00:04Z'))
+      ]
+    };
+
+    expect(workflowCanRun(workflow)).toBe(false);
+    expect(workflowRunReadinessIssues(workflow)).toContain('Set a capture rectangle for the region-visible trigger.');
+  });
+
   it('does not let incomplete imported or legacy drafts persist as active or armed', () => {
     const workflow: Workflow = {
       ...createNewMacroWorkflow(new Date('2026-05-11T12:00:00Z')),

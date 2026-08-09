@@ -39,14 +39,18 @@ Providers return structured results:
 }
 ```
 
-Detection providers return:
+Detection providers return a visual trigger result:
 
 ```json
 {
   "match": true,
-  "reason": "short reason"
+  "confidence": 0.92,
+  "reason": "short reason",
+  "matched_references": ["#ref1"]
 }
 ```
+
+The runner normalizes the result into match/skipped status, confidence, matched references, and a human-readable reason. Configured confidence thresholds can turn a low-confidence model match into a logged no-match instead of firing the workflow.
 
 ## Rejected Behavior
 

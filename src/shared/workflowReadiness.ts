@@ -22,7 +22,7 @@ export function workflowRunReadinessIssues(workflow: Workflow): string[] {
 
     if (workflow.trigger.kind === 'region-visible') {
       const captureNode = workflow.nodes.find((node) => node.type === 'capture');
-      if (captureNode?.config.mode !== 'region') {
+      if (captureNode?.config.mode !== 'region' || !hasPositiveCaptureRegion(captureNode.config.region)) {
         issues.push('Set a capture rectangle for the region-visible trigger.');
       }
     }
@@ -53,4 +53,15 @@ export function normalizeWorkflowLifecycleForSave(workflow: Workflow): Workflow 
     ...workflow,
     runnerState: workflow.status === 'active' ? 'armed' : 'inactive'
   };
+}
+
+function hasPositiveCaptureRegion(value: unknown): boolean {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return false;
+  }
+
+  const region = value as Record<string, unknown>;
+  const width = Number(region.width);
+  const height = Number(region.height);
+  return Number.isFinite(width) && Number.isFinite(height) && width > 0 && height > 0;
 }

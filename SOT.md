@@ -54,11 +54,11 @@ Declared boundary: visible pixels in, explicit workflow actions out. The app mus
 
 ## Validation State
 
-Reported by the July 15, 2026 YAIML todo continuation pass:
+Reported by the August 8, 2026 ShepAIrd YAIML/TODO audit pass:
 
 - `npm run validate` passed.
-- Vitest passed with 16 files and 106 tests.
-- Go tests passed.
+- Vitest passed with 16 files and 107 tests.
+- Go tests passed as part of validation, and a separate `go test ./...` pass also passed.
 - TypeScript/Electron production build passed.
 - `npm audit --audit-level=moderate` was not rerun in this pass. Existing findings remain a deliberate dependency-upgrade task around Electron/Vite/Vitest/electron-vite and ExcelJS/uuid.
 
@@ -91,10 +91,10 @@ Build the "generic macro confidence + watch/debug hardening" slice:
 2. Manually test whether the live proposal review surface is understandable with real Ollama output.
 3. Improve Run Inspector clarity so watch decisions are understandable without raw logs.
 4. Improve region-picker edge/failure states.
-6. Keep deterministic reference matching conservative, visible, and configurable.
-7. Preserve the generic `StructuredObservation` path and keep fishing quarantined.
-8. Treat dependency/security upgrades as an explicit pass, not incidental churn.
-9. Run `npm run validate` after meaningful slices.
+5. Keep deterministic reference matching conservative, visible, and configurable.
+6. Preserve the generic `StructuredObservation` path and keep fishing quarantined.
+7. Treat dependency/security upgrades as an explicit pass, not incidental churn.
+8. Run `npm run validate` after meaningful slices.
 
 ## Open Questions
 
