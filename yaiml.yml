@@ -21,6 +21,12 @@ preserved_context:
   safety: SAFETY.md
   manual_checks: MANUAL_TEST_CHECKLIST.md
 
+supporting:
+  - path: AGENTS.md
+    role: agent-instructions
+  - path: AI_USAGE.md
+    role: ai-usage-disclosure
+
 reference:
   yaiml:
     note: Provide a local or team-approved YAIML reference at run time for manual convention refreshes; do not commit machine-specific paths.

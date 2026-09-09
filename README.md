@@ -34,6 +34,10 @@ The first user flow is intentionally created by the user:
 
 The live capture flow starts from `New Live Flow`: approve the requested capabilities, drag-select a screen rectangle, then review the paused workflow draft that asks local AI to propose visible state, repeatable pattern, guard condition, and suggested action.
 
+## AI Usage
+
+This project is maintained with AI-assisted development. See [AI_USAGE.md](AI_USAGE.md) for the disclosure and provenance expectations.
+
 ## Stack
 
 This v0 uses Electron + React/TypeScript for the desktop shell and UI, plus a small Go core for backend-style workflow validation, deterministic extraction normalization, and CSV actions.

@@ -51,10 +51,12 @@ npm test -- --run tests/extractor.test.ts tests/workflowPolicy.test.ts tests/act
 
 ## Important Files
 
+- `AGENTS.md`: persistent repository instructions that tell Codex to load and maintain YAIML during ordinary work.
 - `SOT.md`: concise YAIML current state.
 - `SOTM.md`: older/current detailed state snapshot; preserve useful content and reconcile when SOT changes.
 - `ARCHITECTURE.md`: durable boundaries and system shape.
 - `AI_WORKFLOW_CONTRACT.md`: AI/provider contract.
+- `AI_USAGE.md`: AI-assisted development disclosure and generated-output provenance expectations.
 - `SAFETY.md`: product safety posture.
 - `MANUAL_TEST_CHECKLIST.md`: human app verification.
 - `src/main/main.ts`: Electron IPC/window/hotkey wiring; should stay thin.
@@ -101,3 +103,5 @@ Use `MANUAL_TEST_CHECKLIST.md` for app-level behavior. Especially verify:
 - When a workflow shape changes, update `workflowSchema.ts` migrations rather than adding more ad hoc normalization.
 - Update YAIML after meaningful changes: concise SOT first, architecture only for durable shape, maintainer guide only for operating knowledge.
 - Phrases such as "update YAIML", "updated YAIML", "check new YAIML", or "run a YAIML update" mean to compare this repository's local YAIML scaffolding against a human-provided, workspace-provided, or team-approved YAIML reference, refresh only compatible prompts/templates/guidance/agent-instruction pointers, and preserve project-specific memory.
+- Phrases such as "clean up YAIML", "compress YAIML", "compact project memory", "prune project memory", or "prune SoT" mean to remove stale or repetitive memory while preserving current truth, evidence, human direction, unresolved conflicts, and useful uncertainty.
+- Keep machine-specific YAIML reference paths out of committed files. Record exact reference revisions in task reports, not in versioned memory, unless the human explicitly asks for a stable public/team reference pointer.
