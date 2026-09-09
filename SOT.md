@@ -6,8 +6,10 @@ purpose: Current engineering state and direction for the project.
 belongs-here: goals, current capabilities, declared direction, active risks, priorities, divergence, uncertainty, useful recent lessons.
 not-here: durable architecture, command reference, complete history.
 durability: volatile; synthesize and prune aggressively.
+budget: About 1200 words; a working target, not a length to fill.
 read-with: Architecture; Maintainer Guide; SOTM.md.
 update-when: direction, verified reality, risks, priorities, or useful engineering lessons change.
+last-verified: not established; claims not rechecked in this refresh.
 agent-guidance: Verify implementation claims. Preserve human intent. Mark uncertainty. Surface conflicts. Prune stale detail.
 ---
 

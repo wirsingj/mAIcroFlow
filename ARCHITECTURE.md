@@ -6,8 +6,10 @@ purpose: Durable system shape, boundaries, invariants, and design constraints fo
 belongs-here: components, data flow, architectural boundaries, invariants, implemented/intended architecture, known violations, danger zones, retired approaches.
 not-here: volatile priorities, command reference, complete history, implementation minutiae better kept near code.
 durability: stable; update when system shape or boundaries change.
+budget: About 1800 words; a working target, not a length to fill.
 read-with: SOT; Maintainer Guide; AI_WORKFLOW_CONTRACT.md; SAFETY.md.
 update-when: components, data flow, boundaries, invariants, or major design decisions change.
+last-verified: not established; claims not rechecked in this refresh.
 agent-guidance: Preserve existing architecture knowledge. Mark implementation divergence. Do not invent legal/security conclusions.
 ---
 

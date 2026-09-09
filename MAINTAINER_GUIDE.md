@@ -6,8 +6,10 @@ purpose: Operating knowledge for setup, checks, diagnostics, and safe maintenanc
 belongs-here: commands, setup notes, test strategy, important files, danger zones, failure playbooks, environment-dependent procedures.
 not-here: product direction, durable architecture narrative, complete release history.
 durability: moderately stable; update when commands, workflows, or maintenance hazards change.
+budget: About 1000 words; a working target, not a length to fill.
 read-with: SOT; Architecture; README.md; MANUAL_TEST_CHECKLIST.md.
 update-when: setup, commands, test scope, diagnostics, or recurring failure modes change.
+last-verified: not established; claims not rechecked in this refresh.
 agent-guidance: Prefer verified commands. Do not invent environment guarantees. Preserve WIP. Keep procedures practical.
 ---
 
