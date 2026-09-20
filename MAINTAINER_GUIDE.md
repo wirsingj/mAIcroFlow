@@ -110,6 +110,8 @@ Follow the synthesis rules in `AGENTS.md`: update the existing account of change
 
 For convention refreshes, use the human-provided, workspace-local, or team-approved reference; request one if absent. Compare its update and init guidance with local instructions and maintenance notes. Preserve project knowledge, discovery layout/version, local names, budgets, custom fields, and review rules. Do not add prompt/template copies without a concrete workflow need.
 
+For branch, PR, or merge work, update memory against the actual checkout and target branch semantics. Preserve independent contributions, reconcile the combined meaning even after clean textual merges, distinguish implemented from deployed behavior, keep decision conflicts visible, and follow existing review authority and branch permissions.
+
 For refreshes and compression, measure whole-document whitespace-delimited words before and after; compress affected memory safely first. Preserve human direction, evidence scope, uncertainty, unresolved conflicts, and governed retention. Report necessary growth, retained overages, and next actions in the task response, not memory. Never pad, inflate budgets, or delete necessary knowledge to meet a number.
 
 Verify discovery paths, links, stable headers, instruction activation, and sensitive-content handling. Repeat the same-reference refresh and leave healthy files unchanged. Report configured persistence separately from observed session loading. Keep reference revisions in task results and private reference locations, credentials, personal details, private transcripts, and raw sensitive logs out of committed memory.
