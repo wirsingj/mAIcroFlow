@@ -20,6 +20,17 @@ still-relevant decision or constraint, or lesson that changes future action.
 Keep one detailed home per fact; link from other roles. Do not move run history
 into new supporting files merely to shorten the core.
 
+Keep routine edits within the smallest affected passages; preserve unrelated
+wording and structure. Broad compression belongs in separately scoped work.
+Memory describes this checkout; distinguish proposed, implemented, and
+deployed. With a PR/MR, reconcile affected memory against the actual target and
+combined changes before integration, including clean textual merges. Preserve
+independent contributions; never choose an entire conflicting document by side.
+Keep decision conflicts visible and route dependent choices to existing review
+authority. Recheck affected claims and evidence after integration changes;
+report unavailable target context or unrun checks. Follow repository branch
+permissions.
+
 Preserve human direction, evidence scope, uncertainty, unresolved conflicts,
 and governed records. Measure affected documents before/after and check budgets;
 compress safely first.
